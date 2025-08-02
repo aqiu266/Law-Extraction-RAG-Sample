@@ -17,10 +17,9 @@ def preProcessCaseText(query, full_text):
     # chunk and vectorize full_text
     # get a few relevant chunks based on similarity to query
 
-
-
-    chunks = ["", ""]
+    chunks = retriever._get_relevant_documents(query)
     context = ""
+
     for chunk in chunks:
         context += f"<case_text_chunk>\n{chunk}\n</case_text_chunk>"
 
