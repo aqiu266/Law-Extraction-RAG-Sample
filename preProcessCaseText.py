@@ -7,7 +7,7 @@ from langchain_community.vectorstores import FAISS
 from langchain_community.embeddings import OpenAIEmbeddings
 
 def preProcessCaseText(query, full_text):
-    splitter = RecursiveCharacterTextSplitter(chunk_size=400, chunk_overlap=200) # based on this article it seems like this is the optimal chunk split: https://research.trychroma.com/evaluating-chunking
+    splitter = RecursiveCharacterTextSplitter(chunk_size=2000, chunk_overlap=1000, separators = ["\n\n", "\n", " ", ".", "?", ""]) # based on this article it seems like this is the optimal chunk split: https://research.trychroma.com/evaluating-chunking - we assume that each token corresponds to a word and that the average word length is 5 characters
     chunks = splitter.split_text(full_text)
 
     embeddings = OpenAIEmbeddings()
